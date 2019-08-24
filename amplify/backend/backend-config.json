@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"stytest355bf503": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}

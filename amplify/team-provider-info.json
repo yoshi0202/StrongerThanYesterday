@@ -1,0 +1,19 @@
+{
+    "develop": {
+        "awscloudformation": {
+            "AuthRoleName": "stytest-develop-20190812112907-authRole",
+            "UnauthRoleArn": "arn:aws:iam::208883155032:role/stytest-develop-20190812112907-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::208883155032:role/stytest-develop-20190812112907-authRole",
+            "Region": "ap-northeast-1",
+            "DeploymentBucketName": "stytest-develop-20190812112907-deployment",
+            "UnauthRoleName": "stytest-develop-20190812112907-unauthRole",
+            "StackName": "stytest-develop-20190812112907",
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:208883155032:stack/stytest-develop-20190812112907/f5edc9c0-bca8-11e9-9b24-0e72822fc3e0"
+        },
+        "categories": {
+            "auth": {
+                "stytest355bf503": {}
+            }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "projectName": "STY",
+    "version": "2.0",
+    "frontend": "javascript",
+    "javascript": {
+        "framework": "react-native",
+        "config": {
+            "SourceDir": "/",
+            "DistributionDir": "/",
+            "BuildCommand": "npm build",
+            "StartCommand": "npm start"
+        }
+    },
+    "providers": ["awscloudformation"]
+}
