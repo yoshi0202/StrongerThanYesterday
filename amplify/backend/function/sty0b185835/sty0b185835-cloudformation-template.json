@@ -84,7 +84,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "stytest-develop-20190812112907-deployment",
-					"S3Key": "amplify-builds/sty0b185835-63754f332b396b65754d-build.zip"
+					"S3Key": "amplify-builds/sty0b185835-5935643861416438394a-build.zip"
 				}
 			}
 		},

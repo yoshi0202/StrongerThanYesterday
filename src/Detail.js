@@ -65,14 +65,14 @@ export default class DetailScreen extends React.Component {
             modalVisible: false,
             loading: true
         });
-        // this.getData();
+        this.scanAllPosts();
     };
     handleSignOut = () => {
         Amplify.Auth.signOut()
             .then(() => this.props.navigation.navigate("Home"))
             .catch(err => console.log(err));
     };
-    addFeed = async () => {
+    addPost = async () => {
         if (this.state.post === "") {
             Alert.alert("text me");
             return;
@@ -92,8 +92,6 @@ export default class DetailScreen extends React.Component {
         };
         Amplify.API.post(apiName, path, putParams)
             .then(response => {
-                // this.getData();
-                this.setState({ loading: false });
                 this.closeModal();
                 console.log("success!");
                 console.log(response);
@@ -103,8 +101,8 @@ export default class DetailScreen extends React.Component {
                 console.log(error.response);
             });
     };
-    getData = async () => {
-        const apiName = "apib3b16946";
+    scanAllPosts = async () => {
+        const apiName = "api7ac6c396";
         const path = "/posts";
         const myInit = {
             response: true,
@@ -115,11 +113,12 @@ export default class DetailScreen extends React.Component {
             this.setState({
                 userData: result.data
             });
+            this.setState({ loading: false });
         });
     };
     componentDidMount = () => {
-        this.setState({ loading: false });
-        // this.getData();
+        this.setState({ loading: true });
+        this.scanAllPosts();
     };
     render() {
         const animating = this.state.loading;
@@ -142,8 +141,7 @@ export default class DetailScreen extends React.Component {
                         <Text>Detail Screen</Text>
                         {this.state.userData.map(datas => (
                             <Text key={datas.post_id}>
-                                {datas.data.event_user},{datas.data.post},
-                                {datas.data.updated_at}
+                                {datas.data.post},{datas.timestamp}
                             </Text>
                         ))}
                         <Icon name="plus" size={50} onPress={this.openModal} />
@@ -164,7 +162,7 @@ export default class DetailScreen extends React.Component {
                                     }
                                 />
                                 <Button
-                                    onPress={() => this.addFeed()}
+                                    onPress={() => this.addPost()}
                                     title="AddFeed!"
                                 ></Button>
                                 <Button
