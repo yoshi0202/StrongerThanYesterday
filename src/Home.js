@@ -1,6 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 export default class HomeScreen extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loginSession: "aaaa"
+        };
+    }
     render() {
         return (
             <View
@@ -11,12 +17,19 @@ export default class HomeScreen extends React.Component {
                 }}
             >
                 <Text>Home Screen</Text>
-                <Button
-                    title="click me"
-                    onPress={() =>
-                        this.props.navigation.navigate("Authenticate")
-                    }
-                />
+                {this.state.loginSession ? (
+                    <Button
+                        title="move"
+                        onPress={() => this.props.navigation.navigate("Detail")}
+                    />
+                ) : (
+                    <Button
+                        title="Please SignIn"
+                        onPress={() =>
+                            this.props.navigation.navigate("Authenticate")
+                        }
+                    />
+                )}
             </View>
         );
     }
