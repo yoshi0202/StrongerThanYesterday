@@ -1,0 +1,7 @@
+{
+    "tableName": "dynamoc99d753b",
+    "partitionKeyName": "device_id",
+    "partitionKeyType": "S",
+    "sortKeyName": "timestamp",
+    "sortKeyType": "N"
+}
