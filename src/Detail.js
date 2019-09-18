@@ -6,15 +6,15 @@ import {
     View,
     Button,
     Modal,
-    Alert
+    Alert,
+    FlatList
 } from "react-native";
-import { Input } from "react-native-elements";
+import { Input, ListItem } from "react-native-elements";
 import Amplify from "aws-amplify";
 import aws_exports from "../aws-exports";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 Amplify.configure(aws_exports);
-
 export default class DetailScreen extends React.Component {
     constructor(props) {
         super(props);
@@ -125,9 +125,8 @@ export default class DetailScreen extends React.Component {
         return (
             <View
                 style={{
-                    flex: 1,
-                    alignItems: "center",
-                    justifyContent: "center"
+                    backgroundColor: "green",
+                    flex: 1
                 }}
             >
                 {this.state.loading ? (
@@ -138,12 +137,22 @@ export default class DetailScreen extends React.Component {
                     />
                 ) : (
                     <View>
-                        <Text>Detail Screen</Text>
-                        {this.state.userData.map(datas => (
-                            <Text key={datas.post_id}>
-                                {datas.data.post},{datas.timestamp}
+                        <View style={{ alignItems: "center" }}>
+                            <Text>
+                                Detail
+                                Screen...................................................
                             </Text>
-                        ))}
+                        </View>
+                        <FlatList
+                            data={this.state.userData}
+                            renderItem={({ item }) => (
+                                <ListItem
+                                    title={`${item.device_id} ${item.post_id}`}
+                                    subtitle={item.data.post}
+                                    keyExtractor={item.post_id}
+                                />
+                            )}
+                        />
                         <Icon name="plus" size={50} onPress={this.openModal} />
                         <Button title="Sign Out" onPress={this.handleSignOut} />
                         <Modal
