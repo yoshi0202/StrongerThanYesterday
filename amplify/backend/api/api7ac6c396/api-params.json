@@ -1,0 +1,48 @@
+{
+    "paths": [
+        {
+            "name": "/posts",
+            "lambdaFunction": "sty0b185835",
+            "privacy": {
+                "protected": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ],
+                "unauth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            }
+        }
+    ],
+    "resourceName": "api7ac6c396",
+    "apiName": "api7ac6c396",
+    "functionArns": [
+        {
+            "lambdaFunction": "sty0b185835"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 1,
+        "authRoleName": "stytest-develop-20190812112907-authRole",
+        "unAuthRoleName": "stytest-develop-20190812112907-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "sty0b185835",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

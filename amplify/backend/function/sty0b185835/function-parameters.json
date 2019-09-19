@@ -1,0 +1,20 @@
+{
+    "permissions": {
+        "auth": {
+            "stytest355bf503": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        },
+        "storage": {
+            "dynamoc99d753b": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        }
+    }
+}

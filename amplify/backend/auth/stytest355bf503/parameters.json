@@ -1,6 +1,6 @@
 {
     "identityPoolName": "stytest355bf503_identitypool_355bf503",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "openIdLambdaRoleName": "stytes355bf503_openid_lambda_role",
     "resourceNameTruncated": "stytes355bf503",
     "userPoolName": "stytest355bf503_userpool_355bf503",

@@ -17,7 +17,8 @@ export default class Authentication extends React.Component {
             confirmPassword: "",
             confirmationCode: "",
             modalVisible: false,
-            selectedIndex: 0
+            selectedIndex: 0,
+            loginSession: ""
         };
         this.buttons = ["Sign Up", "Sign In"];
     }
@@ -47,6 +48,12 @@ export default class Authentication extends React.Component {
                 });
                 break;
 
+            case "loginSession":
+                this.setState({
+                    loginSession: val
+                });
+                break;
+
             default:
                 console.log("error");
                 break;
@@ -64,7 +71,10 @@ export default class Authentication extends React.Component {
                 password,
                 attributes: { email }
             })
-                .then(() => this.setState({ modalVisible: true }))
+                .then(res => {
+                    console.table(JSON.stringify(res));
+                    this.setState({ modalVisible: true });
+                })
                 .catch(err => console.log(err));
         } else {
             Alert.alert("Passwords do not match.");
@@ -74,7 +84,11 @@ export default class Authentication extends React.Component {
     handleSignIn = () => {
         const { email, password } = this.state;
         Amplify.Auth.signIn(email, password)
-            .then(user => this.props.navigation.navigate("Detail"))
+            .then(user => {
+                console.log(JSON.stringify(user.pool.clientId));
+                this.changeState("loginSession", user.pool.clientId);
+                this.props.navigation.navigate("Detail");
+            })
             .catch(err => {
                 Alert.alert(err);
                 console.log("handleSignIn:エラー発生");
