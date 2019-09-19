@@ -7,7 +7,8 @@ import {
     Button,
     Modal,
     Alert,
-    FlatList
+    FlatList,
+    ScrollView
 } from "react-native";
 import { Input, ListItem } from "react-native-elements";
 import Amplify from "aws-amplify";
@@ -126,7 +127,8 @@ export default class DetailScreen extends React.Component {
             <View
                 style={{
                     backgroundColor: "green",
-                    flex: 1
+                    flex: 1,
+                    justifyContent: "center"
                 }}
             >
                 {this.state.loading ? (
@@ -137,49 +139,73 @@ export default class DetailScreen extends React.Component {
                     />
                 ) : (
                     <View>
-                        <View style={{ alignItems: "center" }}>
-                            <Text>
-                                Detail
-                                Screen...................................................
-                            </Text>
-                        </View>
-                        <FlatList
-                            data={this.state.userData}
-                            renderItem={({ item }) => (
-                                <ListItem
-                                    title={`${item.device_id} ${item.post_id}`}
-                                    subtitle={item.data.post}
-                                    keyExtractor={item.post_id}
-                                />
-                            )}
-                        />
-                        <Icon name="plus" size={50} onPress={this.openModal} />
-                        <Button title="Sign Out" onPress={this.handleSignOut} />
-                        <Modal
-                            visible={this.state.modalVisible}
-                            animationType={"slide"}
+                        <ScrollView>
+                            <FlatList
+                                data={this.state.userData}
+                                renderItem={({ item }) => (
+                                    <View>
+                                        <ListItem
+                                            title={`${item.device_id} ${item.post_id}`}
+                                            subtitle={item.data.post}
+                                            keyExtractor={item.post_id}
+                                            leftIcon={"heart"}
+                                        />
+                                        <Icon
+                                            name="heart"
+                                            size={50}
+                                            onPress={this.openModal}
+                                        />
+                                    </View>
+                                )}
+                            />
+                            <Button
+                                title="Sign Out"
+                                onPress={this.handleSignOut}
+                            />
+                            <Modal
+                                visible={this.state.modalVisible}
+                                animationType={"slide"}
+                            >
+                                <View style={styles.modalcontainer}>
+                                    <Input
+                                        label="AddFeed"
+                                        leftIcon={{
+                                            type: "font-awesome",
+                                            name: "lock"
+                                        }}
+                                        onChangeText={value =>
+                                            this.changeFeed(value)
+                                        }
+                                    />
+                                    <Button
+                                        onPress={() => this.addPost()}
+                                        title="AddFeed!"
+                                    ></Button>
+                                    <Button
+                                        onPress={() => this.closeModal()}
+                                        title="Close modal"
+                                    ></Button>
+                                </View>
+                            </Modal>
+                        </ScrollView>
+                        <View
+                            style={{
+                                width: 50,
+                                height: 50,
+                                right: 10,
+                                bottom: 100,
+                                backgroundColor: "blue",
+                                position: "absolute",
+                                alignItems: "center",
+                                justifyContent: "center"
+                            }}
                         >
-                            <View style={styles.modalcontainer}>
-                                <Input
-                                    label="AddFeed"
-                                    leftIcon={{
-                                        type: "font-awesome",
-                                        name: "lock"
-                                    }}
-                                    onChangeText={value =>
-                                        this.changeFeed(value)
-                                    }
-                                />
-                                <Button
-                                    onPress={() => this.addPost()}
-                                    title="AddFeed!"
-                                ></Button>
-                                <Button
-                                    onPress={() => this.closeModal()}
-                                    title="Close modal"
-                                ></Button>
-                            </View>
-                        </Modal>
+                            <Icon
+                                name="plus"
+                                size={50}
+                                onPress={this.openModal}
+                            />
+                        </View>
                     </View>
                 )}
             </View>
