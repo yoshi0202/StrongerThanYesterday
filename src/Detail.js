@@ -166,13 +166,7 @@ export default class DetailScreen extends React.Component {
     render() {
         const animating = this.state.loading;
         return (
-            <View
-                style={{
-                    backgroundColor: "green",
-                    flex: 1,
-                    justifyContent: "center"
-                }}
-            >
+            <View style={styles.mainContainer}>
                 {this.state.loading ? (
                     <ActivityIndicator
                         animating={animating}
@@ -182,18 +176,7 @@ export default class DetailScreen extends React.Component {
                 ) : (
                     <View>
                         {this.renderScrollView()}
-                        <View
-                            style={{
-                                width: 50,
-                                height: 50,
-                                right: 10,
-                                bottom: 100,
-                                backgroundColor: "blue",
-                                position: "absolute",
-                                alignItems: "center",
-                                justifyContent: "center"
-                            }}
-                        >
+                        <View style={styles.openModalStyle}>
                             <Icon
                                 name="plus"
                                 size={50}
@@ -235,6 +218,21 @@ export default class DetailScreen extends React.Component {
 const styles = StyleSheet.create({
     modalcontainer: {
         flex: 1,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    mainContainer: {
+        backgroundColor: "green",
+        flex: 1,
+        justifyContent: "center"
+    },
+    openModalStyle: {
+        width: 50,
+        height: 50,
+        right: 10,
+        bottom: 100,
+        backgroundColor: "blue",
+        position: "absolute",
         alignItems: "center",
         justifyContent: "center"
     }
