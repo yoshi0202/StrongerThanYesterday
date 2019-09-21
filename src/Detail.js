@@ -121,6 +121,48 @@ export default class DetailScreen extends React.Component {
         this.setState({ loading: true });
         this.scanAllPosts();
     };
+    renderListItem = item => {
+        return (
+            <ListItem
+                title={`${item.device_id} ${item.post_id}`}
+                subtitle={item.data.post}
+                keyExtractor={item.post_id}
+                rightIcon={
+                    <View
+                        style={{
+                            flexDirection: "row"
+                        }}
+                    >
+                        <Icon
+                            name="heart"
+                            size={20}
+                            type="font-awesome"
+                            onPress={() => console.log("Pressed !")}
+                        />
+                        <Icon
+                            name="comments"
+                            size={20}
+                            type="font-awesome"
+                            onPress={() => console.log("Pressed2 !")}
+                        />
+                    </View>
+                }
+            />
+        );
+    };
+    renderScrollView = () => {
+        return (
+            <ScrollView>
+                <FlatList
+                    data={this.state.userData}
+                    renderItem={({ item }) => (
+                        <View>{this.renderListItem(item)}</View>
+                    )}
+                />
+                <Button title="Sign Out" onPress={this.handleSignOut} />
+            </ScrollView>
+        );
+    };
     render() {
         const animating = this.state.loading;
         return (
@@ -139,55 +181,7 @@ export default class DetailScreen extends React.Component {
                     />
                 ) : (
                     <View>
-                        <ScrollView>
-                            <FlatList
-                                data={this.state.userData}
-                                renderItem={({ item }) => (
-                                    <View>
-                                        <ListItem
-                                            title={`${item.device_id} ${item.post_id}`}
-                                            subtitle={item.data.post}
-                                            keyExtractor={item.post_id}
-                                            leftIcon={"heart"}
-                                        />
-                                        <Icon
-                                            name="heart"
-                                            size={50}
-                                            onPress={this.openModal}
-                                        />
-                                    </View>
-                                )}
-                            />
-                            <Button
-                                title="Sign Out"
-                                onPress={this.handleSignOut}
-                            />
-                            <Modal
-                                visible={this.state.modalVisible}
-                                animationType={"slide"}
-                            >
-                                <View style={styles.modalcontainer}>
-                                    <Input
-                                        label="AddFeed"
-                                        leftIcon={{
-                                            type: "font-awesome",
-                                            name: "lock"
-                                        }}
-                                        onChangeText={value =>
-                                            this.changeFeed(value)
-                                        }
-                                    />
-                                    <Button
-                                        onPress={() => this.addPost()}
-                                        title="AddFeed!"
-                                    ></Button>
-                                    <Button
-                                        onPress={() => this.closeModal()}
-                                        title="Close modal"
-                                    ></Button>
-                                </View>
-                            </Modal>
-                        </ScrollView>
+                        {this.renderScrollView()}
                         <View
                             style={{
                                 width: 50,
@@ -206,6 +200,31 @@ export default class DetailScreen extends React.Component {
                                 onPress={this.openModal}
                             />
                         </View>
+                        <Modal
+                            visible={this.state.modalVisible}
+                            animationType={"slide"}
+                        >
+                            <View style={styles.modalcontainer}>
+                                <Input
+                                    label="AddFeed"
+                                    leftIcon={{
+                                        type: "font-awesome",
+                                        name: "lock"
+                                    }}
+                                    onChangeText={value =>
+                                        this.changeFeed(value)
+                                    }
+                                />
+                                <Button
+                                    onPress={() => this.addPost()}
+                                    title="AddFeed!"
+                                ></Button>
+                                <Button
+                                    onPress={() => this.closeModal()}
+                                    title="Close modal"
+                                ></Button>
+                            </View>
+                        </Modal>
                     </View>
                 )}
             </View>
