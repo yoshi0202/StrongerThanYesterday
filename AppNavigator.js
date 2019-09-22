@@ -4,8 +4,18 @@ import Detail from "./src/Detail";
 import Authenticate from "./src/Authenticate";
 
 const AppNavigator = createStackNavigator({
-    Home: Home,
-    Detail: Detail,
+    Home: {
+        screen: Home,
+        navigationOptions: () => ({
+            header: null
+        })
+    },
+    Detail: {
+        screen: Detail,
+        navigationOptions: () => ({
+            header: null
+        })
+    },
     Authenticate: Authenticate
 });
 

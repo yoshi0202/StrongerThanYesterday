@@ -12,8 +12,10 @@ import {
 } from "react-native";
 import { Input, ListItem } from "react-native-elements";
 import Amplify from "aws-amplify";
+import * as Fonts from "expo-font";
 import aws_exports from "../aws-exports";
 import Icon from "react-native-vector-icons/FontAwesome";
+import TabIndex from "./tab/TabIndex";
 
 Amplify.configure(aws_exports);
 export default class DetailScreen extends React.Component {
@@ -126,7 +128,6 @@ export default class DetailScreen extends React.Component {
             <ListItem
                 title={`${item.device_id} ${item.post_id}`}
                 subtitle={item.data.post}
-                keyExtractor={item.post_id}
                 rightIcon={
                     <View
                         style={{
@@ -155,6 +156,7 @@ export default class DetailScreen extends React.Component {
             <ScrollView>
                 <FlatList
                     data={this.state.userData}
+                    keyExtractor={item => item.post_id}
                     renderItem={({ item }) => (
                         <View>{this.renderListItem(item)}</View>
                     )}
@@ -176,7 +178,7 @@ export default class DetailScreen extends React.Component {
                 ) : (
                     <View>
                         {this.renderScrollView()}
-                        <View style={styles.openModalStyle}>
+                        <View style={styles.openModalIcon}>
                             <Icon
                                 name="plus"
                                 size={50}
@@ -208,6 +210,7 @@ export default class DetailScreen extends React.Component {
                                 ></Button>
                             </View>
                         </Modal>
+                        <TabIndex />
                     </View>
                 )}
             </View>
@@ -226,7 +229,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center"
     },
-    openModalStyle: {
+    openModalIcon: {
         width: 50,
         height: 50,
         right: 10,
