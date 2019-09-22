@@ -176,7 +176,7 @@ export default class DetailScreen extends React.Component {
                 ) : (
                     <View>
                         {this.renderScrollView()}
-                        <View style={styles.openModalStyle}>
+                        <View style={styles.openModalIcon}>
                             <Icon
                                 name="plus"
                                 size={50}
@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center"
     },
-    openModalStyle: {
+    openModalIcon: {
         width: 50,
         height: 50,
         right: 10,
