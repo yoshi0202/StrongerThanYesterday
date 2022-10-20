@@ -10,7 +10,7 @@
     "dependencies": {
         "aws-amplify": "^1.1.36",
         "aws-amplify-react-native": "^2.1.16",
-        "expo": "^33.0.0",
+        "expo": "^46.0.16",
         "expo-font": "^5.0.1",
         "native-base": "^2.13.8",
         "react": "16.8.3",
